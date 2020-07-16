@@ -83,7 +83,7 @@ set( BINDINGS_HEADER_FILES
     Trajectories/Include/KSTrajTermSynchrotronBuilder.h
     Trajectories/Include/KSTrajTermGyrationBuilder.h
     Trajectories/Include/KSTrajTermGravityBuilder.h
-    Trajectories/Include/KSTrajTermMovingSurfaceBuilder.h
+    Trajectories/Include/KSTrajTermMovingSurfaceUCNBuilder.h
     Trajectories/Include/KSTrajTermDriftBuilder.h
     Trajectories/Include/KSTrajControlTimeBuilder.h
     Trajectories/Include/KSTrajControlLengthBuilder.h
@@ -307,7 +307,7 @@ set( BINDINGS_SOURCE_FILES
     Trajectories/Source/KSTrajTermSynchrotronBuilder.cxx
     Trajectories/Source/KSTrajTermGyrationBuilder.cxx
     Trajectories/Source/KSTrajTermGravityBuilder.cxx
-    Trajectories/Source/KSTrajTermMovingSurfaceBuilder.cxx
+    Trajectories/Source/KSTrajTermMovingSurfaceUCNBuilder.cxx
     Trajectories/Source/KSTrajTermDriftBuilder.cxx
     Trajectories/Source/KSTrajControlCyclotronBuilder.cxx
     Trajectories/Source/KSTrajControlBChangeBuilder.cxx

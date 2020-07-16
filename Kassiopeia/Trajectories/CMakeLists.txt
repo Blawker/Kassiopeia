@@ -54,7 +54,7 @@ set( TRAJECTORIES_HEADER_BASENAMES
     KSTrajTermConstantForcePropagation.h
     KSTrajTermSynchrotron.h
     KSTrajTermGravity.h
-    KSTrajTermMovingSurface.h
+    KSTrajTermMovingSurfaceUCN.h
     KSTrajTermGyration.h
     KSTrajTermDrift.h
 
@@ -134,7 +134,7 @@ set( TRAJECTORIES_SOURCE_BASENAMES
     KSTrajTermConstantForcePropagation.cxx
     KSTrajTermSynchrotron.cxx
     KSTrajTermGravity.cxx
-    KSTrajTermMovingSurface.cxx
+    KSTrajTermMovingSurfaceUCN.cxx
     KSTrajTermGyration.cxx
     KSTrajTermDrift.cxx
 

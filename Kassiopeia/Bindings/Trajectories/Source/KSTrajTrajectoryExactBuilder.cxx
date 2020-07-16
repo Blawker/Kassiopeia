@@ -20,6 +20,7 @@
 #include "KSTrajInterpolatorFastBuilder.h"
 #include "KSTrajInterpolatorHermiteBuilder.h"
 #include "KSTrajTermGravityBuilder.h"
+#include "KSTrajTermMovingSurfaceUCNBuilder.h"
 #include "KSTrajTermPropagationBuilder.h"
 #include "KSTrajTermSynchrotronBuilder.h"
 
@@ -47,6 +48,7 @@ STATICINT sKSTrajTrajectoryExactStructure =
     KSTrajTrajectoryExactBuilder::ComplexElement<KSTrajTermPropagation>("term_propagation") +
     KSTrajTrajectoryExactBuilder::ComplexElement<KSTrajTermSynchrotron>("term_synchrotron") +
     KSTrajTrajectoryExactBuilder::ComplexElement<KSTrajTermGravity>("term_gravity") +
+    KSTrajTrajectoryExactBuilder::ComplexElement<KSTrajTermMovingSurfaceUCN>("term_moving_surface") +
     KSTrajTrajectoryExactBuilder::ComplexElement<KSTrajControlTime>("control_time") +
     KSTrajTrajectoryExactBuilder::ComplexElement<KSTrajControlLength>("control_length") +
     KSTrajTrajectoryExactBuilder::ComplexElement<KSTrajControlEnergy>("control_energy") +
