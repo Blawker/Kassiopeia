@@ -83,6 +83,7 @@ set( BINDINGS_HEADER_FILES
     Trajectories/Include/KSTrajTermSynchrotronBuilder.h
     Trajectories/Include/KSTrajTermGyrationBuilder.h
     Trajectories/Include/KSTrajTermGravityBuilder.h
+    Trajectories/Include/KSTrajTermMovingSurfaceBuilder.h
     Trajectories/Include/KSTrajTermDriftBuilder.h
     Trajectories/Include/KSTrajControlTimeBuilder.h
     Trajectories/Include/KSTrajControlLengthBuilder.h
@@ -125,6 +126,7 @@ set( BINDINGS_HEADER_FILES
     Interactions/Include/KSIntDecayBuilder.h
     Interactions/Include/KSIntSurfaceSpecularBuilder.h
     Interactions/Include/KSIntSurfaceUCNBuilder.h
+    Interactions/Include/KSIntMovingSurfaceUCNBuilder.h
     Interactions/Include/KSIntSurfaceDiffuseBuilder.h
     Interactions/Include/KSIntSurfaceMultiplicationBuilder.h
     Interactions/Include/KSIntSurfaceSpinFlipBuilder.h
@@ -305,6 +307,7 @@ set( BINDINGS_SOURCE_FILES
     Trajectories/Source/KSTrajTermSynchrotronBuilder.cxx
     Trajectories/Source/KSTrajTermGyrationBuilder.cxx
     Trajectories/Source/KSTrajTermGravityBuilder.cxx
+    Trajectories/Source/KSTrajTermMovingSurfaceBuilder.cxx
     Trajectories/Source/KSTrajTermDriftBuilder.cxx
     Trajectories/Source/KSTrajControlCyclotronBuilder.cxx
     Trajectories/Source/KSTrajControlBChangeBuilder.cxx
@@ -347,6 +350,7 @@ set( BINDINGS_SOURCE_FILES
     Interactions/Source/KSIntDecayBuilder.cxx
     Interactions/Source/KSIntSurfaceSpecularBuilder.cxx
     Interactions/Source/KSIntSurfaceUCNBuilder.cxx
+    Interactions/Source/KSIntMovingSurfaceUCNBuilder.cxx
     Interactions/Source/KSIntSurfaceDiffuseBuilder.cxx
     Interactions/Source/KSIntSurfaceMultiplicationBuilder.cxx
     Interactions/Source/KSIntSurfaceSpinFlipBuilder.cxx
@@ -429,7 +433,7 @@ if( Kassiopeia_USE_ROOT )
     )
     if( Kassiopeia_USE_VTK )
         list( APPEND BINDINGS_SOURCE_FILES
-            Visualization/Source/KSVTKGeneratorPainterBuilder.cxx
+            #Visualization/Source/KSVTKGeneratorPainterBuilder.cxx
             Visualization/Source/KSVTKTrackPainterBuilder.cxx
             Visualization/Source/KSVTKTrackTerminatorPainterBuilder.cxx
         )

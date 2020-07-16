@@ -27,6 +27,7 @@ set( INTERACTIONS_HEADER_BASENAMES
 
     KSIntSurfaceSpecular.h
     KSIntSurfaceUCN.h
+    KSIntMovingSurfaceUCN.h
     KSIntSurfaceDiffuse.h
     KSIntSurfaceMultiplication.h
 
@@ -81,6 +82,7 @@ set( INTERACTIONS_SOURCE_BASENAMES
 
     KSIntSurfaceSpecular.cxx
     KSIntSurfaceUCN.cxx
+    KSIntMovingSurfaceUCN.cxx
     KSIntSurfaceDiffuse.cxx
     KSIntSurfaceMultiplication.cxx
 
