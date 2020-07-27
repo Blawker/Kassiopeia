@@ -1,3 +1,10 @@
+/*
+ * KSIntMovingSurfaceUCNBuilder.h
+ *
+ *  Created on: 24.06.2020
+ *      Author: T. Guilbaud
+ */
+
 #ifndef Kassiopeia_KSIntMovingSurfaceUCNBuilder_h_
 #define Kassiopeia_KSIntMovingSurfaceUCNBuilder_h_
 
@@ -38,10 +45,6 @@ template<> inline bool KSIntMovingSurfaceUCNBuilder::AddAttribute(KContainer* aC
     }
     if (aContainer->GetName() == "phi") {
         aContainer->CopyTo(fObject, &KSIntMovingSurfaceUCN::SetPhi);
-        return true;
-    }
-    if (aContainer->GetName() == "mass") {
-        aContainer->CopyTo(fObject, &KSIntMovingSurfaceUCN::SetMass);
         return true;
     }
     if (aContainer->GetName() == "value_formula") {

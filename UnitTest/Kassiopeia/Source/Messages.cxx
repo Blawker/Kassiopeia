@@ -18,6 +18,7 @@
 #include "KSGeneratorsMessage.h"
 #include "KSInteractionsMessage.h"
 #include "KSMathMessage.h"
+#include "KSMotionsMessage.h"
 #include "KSNavigatorsMessage.h"
 #include "KSObjectsMessage.h"
 #include "KSOperatorsMessage.h"
@@ -63,6 +64,13 @@ TEST(KassiopeiaMessageTest, KSInteractionsMessage)
 TEST(KassiopeiaMessageTest, KSMathMessage)
 {
     auto* tMessageClass = new Kassiopeia::KMessage_mathmsg();
+    EXPECT_PTR(tMessageClass);
+    delete tMessageClass;
+}
+
+TEST(KassiopeiaMessageTest, KSMotionsMessage)
+{
+    auto* tMessageClass = new Kassiopeia::KMessage_movmsg();
     EXPECT_PTR(tMessageClass);
     delete tMessageClass;
 }

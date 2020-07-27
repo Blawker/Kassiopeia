@@ -140,6 +140,9 @@ set( BINDINGS_HEADER_FILES
     Modifiers/Include/KSModSplitOnTurnBuilder.h
     Modifiers/Include/KSModEventReportBuilder.h
 
+    # motions
+    Motions/Include/KSMotionSurfaceTranslationBuilder.h
+
     # navigators
     Navigators/Include/KSNavSurfaceBuilder.h
     Navigators/Include/KSNavSpaceBuilder.h
@@ -179,6 +182,7 @@ set( BINDINGS_HEADER_FILES
     Simulation/Include/KSRootTrajectoryBuilder.h
     Simulation/Include/KSRootSpaceInteractionBuilder.h
     Simulation/Include/KSRootSurfaceInteractionBuilder.h
+    Simulation/Include/KSRootSurfaceMotionBuilder.h
     Simulation/Include/KSRootSpaceNavigatorBuilder.h
     Simulation/Include/KSRootStepModifierBuilder.h
     Simulation/Include/KSRootTrackModifierBuilder.h
@@ -364,6 +368,9 @@ set( BINDINGS_SOURCE_FILES
     Modifiers/Source/KSModSplitOnTurnBuilder.cxx
     Modifiers/Source/KSModEventReportBuilder.cxx
 
+    # motions
+    Motions/Source/KSMotionSurfaceTranslationBuilder.cxx
+
     # navigators
     Navigators/Source/KSNavSurfaceBuilder.cxx
     Navigators/Source/KSNavSpaceBuilder.cxx
@@ -403,6 +410,7 @@ set( BINDINGS_SOURCE_FILES
     Simulation/Source/KSRootTrajectoryBuilder.cxx
     Simulation/Source/KSRootSpaceInteractionBuilder.cxx
     Simulation/Source/KSRootSurfaceInteractionBuilder.cxx
+    Simulation/Source/KSRootSurfaceMotionBuilder.cxx
     Simulation/Source/KSRootSpaceNavigatorBuilder.cxx
     Simulation/Source/KSRootStepModifierBuilder.cxx
     Simulation/Source/KSRootTrackModifierBuilder.cxx
@@ -460,6 +468,7 @@ set( BINDINGS_LIBRARIES
     KassiopeiaTrajectories
     KassiopeiaInteractions
     KassiopeiaModifiers
+    KassiopeiaMotions
     KassiopeiaNavigators
     KassiopeiaTerminators
     KassiopeiaWriters
@@ -477,6 +486,7 @@ kasper_internal_include_directories(
     Trajectories/Include
     Interactions/Include
     Modifiers/Include
+    Motions/Include
     Navigators/Include
     Terminators/Include
     Writers/Include

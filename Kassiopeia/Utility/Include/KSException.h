@@ -58,6 +58,15 @@ class KSInteractionError : public katrin::KExceptionPrototype<KSInteractionError
     };
 };
 
+class KSMotionError : public katrin::KExceptionPrototype<KSMotionError, KSException>
+{
+  public:
+    virtual std::string SignalName() const
+    {
+        return "motion_error";
+    };
+};
+
 class KSTrajectoryError : public katrin::KExceptionPrototype<KSTrajectoryError, KSException>
 {
   public:

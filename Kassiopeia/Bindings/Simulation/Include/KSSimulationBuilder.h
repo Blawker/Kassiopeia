@@ -12,6 +12,7 @@
 #include "KSRootSpaceInteraction.h"
 #include "KSRootSpaceNavigator.h"
 #include "KSRootSurfaceInteraction.h"
+#include "KSRootSurfaceMotion.h"
 #include "KSRootSurfaceNavigator.h"
 #include "KSRootTerminator.h"
 #include "KSRootTrajectory.h"
@@ -140,6 +141,14 @@ template<> inline bool KSSimulationBuilder::AddAttribute(KContainer* aContainer)
         KSCommand* tCommand = KToolbox::GetInstance()
                                   .Get<KSRootSurfaceInteraction>("root_surface_interaction")
                                   ->Command("set_surface_interaction", tComponent);
+        fObject->AddCommand(tCommand);
+        return true;
+    }
+    if (aContainer->GetName() == "surface_motion") {
+        auto* tComponent = KToolbox::GetInstance().Get<KSComponent>(aContainer->AsReference<std::string>());
+        KSCommand* tCommand = KToolbox::GetInstance()
+                                  .Get<KSRootSurfaceMotion>("root_surface_motion")
+                                  ->Command("set_surface_motion", tComponent);
         fObject->AddCommand(tCommand);
         return true;
     }

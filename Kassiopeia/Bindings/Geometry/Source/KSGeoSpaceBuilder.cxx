@@ -24,6 +24,8 @@ STATICINT sKSSpaceStructure =
     KSGeoSpaceBuilder::ComplexElement<KSCommandMemberRemoveElectricFieldData>("remove_electric_field") +
     KSGeoSpaceBuilder::ComplexElement<KSCommandMemberAddSpaceInteractionData>("add_space_interaction") +
     KSGeoSpaceBuilder::ComplexElement<KSCommandMemberRemoveSpaceInteractionData>("remove_space_interaction") +
+    KSGeoSpaceBuilder::ComplexElement<KSCommandMemberSetSurfaceMotionData>("set_surface_motion") +
+    KSGeoSpaceBuilder::ComplexElement<KSCommandMemberClearSurfaceMotionData>("clear_surface_motion") +
     KSGeoSpaceBuilder::ComplexElement<KSCommandMemberSetDensityData>("set_density") +
     KSGeoSpaceBuilder::ComplexElement<KSCommandMemberClearDensityData>("clear_density") +
     KSGeoSpaceBuilder::ComplexElement<KSCommandMemberAddStepModifierData>("add_step_modifier") +

@@ -20,6 +20,8 @@ STATICINT sKSGeoSurfaceStructure =
     KSGeoSurfaceBuilder::ComplexElement<KSCommandMemberRemoveElectricFieldData>("remove_magnetic_field") +
     KSGeoSurfaceBuilder::ComplexElement<KSCommandMemberSetSurfaceInteractionData>("set_surface_interaction") +
     KSGeoSurfaceBuilder::ComplexElement<KSCommandMemberClearSurfaceInteractionData>("clear_surface_interaction") +
+    KSGeoSurfaceBuilder::ComplexElement<KSCommandMemberSetSurfaceMotionData>("set_surface_motion") +
+    KSGeoSurfaceBuilder::ComplexElement<KSCommandMemberClearSurfaceMotionData>("clear_surface_motion") +
     KSGeoSurfaceBuilder::ComplexElement<KSCommandMemberAddStepModifierData>("add_step_modifier") +
     KSGeoSurfaceBuilder::ComplexElement<KSCommandMemberRemoveStepModifierData>("remove_step_modifier") +
     KSGeoSurfaceBuilder::ComplexElement<KSCommandMemberAddStepOutputData>("add_step_output") +

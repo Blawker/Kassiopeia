@@ -12,6 +12,7 @@ set( OPERATORS_HEADER_BASENAMES
 	KSSpaceNavigator.h
 	KSSurface.h
 	KSSurfaceInteraction.h
+	KSSurfaceMotion.h
 	KSSurfaceNavigator.h
     KSSide.h
 	KSStepModifier.h
@@ -42,6 +43,7 @@ set( OPERATORS_SOURCE_BASENAMES
     KSSpaceNavigator.cxx
     KSSurface.cxx
 	KSSurfaceInteraction.cxx
+	KSSurfaceMotion.cxx
 	KSSurfaceNavigator.cxx
     KSSide.cxx
 	KSStepModifier.cxx

@@ -22,6 +22,7 @@
 #include "KSRootSpaceNavigator.h"
 #include "KSRootStepModifier.h"
 #include "KSRootSurfaceInteraction.h"
+#include "KSRootSurfaceMotion.h"
 #include "KSRootSurfaceNavigator.h"
 #include "KSRootTerminator.h"
 #include "KSRootTrackModifier.h"
@@ -64,6 +65,7 @@ KSRoot::KSRoot() :
     fRootSpaceInteraction(nullptr),
     fRootSpaceNavigator(nullptr),
     fRootSurfaceInteraction(nullptr),
+    fRootSurfaceMotion(nullptr),
     fRootSurfaceNavigator(nullptr),
     fRootTerminator(nullptr),
     fRootWriter(nullptr),
@@ -98,6 +100,7 @@ KSRoot::KSRoot() :
         fRootSpaceInteraction = fToolbox.Get<KSRootSpaceInteraction>("root_space_interaction");
         fRootSpaceNavigator = fToolbox.Get<KSRootSpaceNavigator>("root_space_navigator");
         fRootSurfaceInteraction = fToolbox.Get<KSRootSurfaceInteraction>("root_surface_interaction");
+        fRootSurfaceMotion = fToolbox.Get<KSRootSurfaceMotion>("root_surface_motion");
         fRootSurfaceNavigator = fToolbox.Get<KSRootSurfaceNavigator>("root_surface_navigator");
         fRootTerminator = fToolbox.Get<KSRootTerminator>("root_terminator");
         fRootWriter = fToolbox.Get<KSRootWriter>("root_writer");
@@ -164,6 +167,11 @@ KSRoot::KSRoot() :
     fRootSurfaceInteraction->SetStep(fStep);
     fToolbox.Add(fRootSurfaceInteraction);
 
+    fRootSurfaceMotion = new KSRootSurfaceMotion();
+    fRootSurfaceMotion->SetName("root_surface_motion");
+    fRootSurfaceMotion->SetStep(fStep);
+    fToolbox.Add(fRootSurfaceMotion);
+
     fRootSurfaceNavigator = new KSRootSurfaceNavigator();
     fRootSurfaceNavigator->SetName("root_surface_navigator");
     fRootSurfaceNavigator->SetStep(fStep);
@@ -228,6 +236,7 @@ KSRoot::KSRoot(const KSRoot& aCopy) :
     fRootSpaceInteraction(aCopy.fRootSpaceInteraction),
     fRootSpaceNavigator(aCopy.fRootSpaceNavigator),
     fRootSurfaceInteraction(aCopy.fRootSurfaceInteraction),
+    fRootSurfaceMotion(aCopy.fRootSurfaceMotion),
     fRootSurfaceNavigator(aCopy.fRootSurfaceNavigator),
     fRootTerminator(aCopy.fRootTerminator),
     fRootWriter(aCopy.fRootWriter),
@@ -761,7 +770,10 @@ void KSRoot::ExecuteStep()
     fStep->SpaceNavigationFlag() = false;
 
     fStep->SurfaceInteractionName().clear();
-    fStep->SurfaceNavigationFlag() = false;
+    fStep->SurfaceInteractionFlag() = false;
+
+    fStep->SurfaceMotionName().clear();
+    fStep->SurfaceMotionFlag() = false;
 
     fStep->SurfaceNavigationName().clear();
     fStep->SurfaceNavigationFlag() = false;
@@ -844,6 +856,9 @@ void KSRoot::ExecuteStep()
 
         // if terminators did not kill the particle, continue with calculations
         if (fStep->TerminatorFlag() == false) {
+            // run surfaces motion
+            fRootSurfaceMotion->ExecuteMotion();
+
             // if the particle is not on a surface or side, continue with space calculations
             if ((fStep->InitialParticle().GetCurrentSurface() == nullptr) &&
                 (fStep->InitialParticle().GetCurrentSide() == nullptr)) {
@@ -985,6 +1000,7 @@ void KSRoot::ExecuteStep()
                     // push update
                     fStep->PushUpdate();
                     fRootSurfaceInteraction->PushUpdate();
+                    fRootSurfaceMotion->PushUpdate();
                     fRootSurfaceNavigator->PushUpdate();
                     fRootTerminator->PushUpdate();
                     fRootStepModifier->PushUpdate();
@@ -995,6 +1011,7 @@ void KSRoot::ExecuteStep()
                     // push deupdate
                     fStep->PushDeupdate();
                     fRootSurfaceInteraction->PushDeupdate();
+                    fRootSurfaceMotion->PushDeupdate();
                     fRootSurfaceNavigator->PushDeupdate();
                     fRootTerminator->PushDeupdate();
                     fRootStepModifier->PushDeupdate();
@@ -1123,6 +1140,7 @@ void KSRoot::InitializeComponent()
     fRootSpaceInteraction->Initialize();
     fRootSpaceNavigator->Initialize();
     fRootSurfaceInteraction->Initialize();
+    fRootSurfaceMotion->Initialize();
     fRootSurfaceNavigator->Initialize();
     fRootTerminator->Initialize();
     fRootWriter->Initialize();
@@ -1149,6 +1167,7 @@ void KSRoot::DeinitializeComponent()
     fRootSpaceInteraction->Deinitialize();
     fRootSpaceNavigator->Deinitialize();
     fRootSurfaceInteraction->Deinitialize();
+    fRootSurfaceMotion->Deinitialize();
     fRootSurfaceNavigator->Deinitialize();
     fRootTerminator->Deinitialize();
     fRootWriter->Deinitialize();
@@ -1175,6 +1194,7 @@ void KSRoot::ActivateComponent()
     fRootSpaceInteraction->Activate();
     fRootSpaceNavigator->Activate();
     fRootSurfaceInteraction->Activate();
+    fRootSurfaceMotion->Activate();
     fRootSurfaceNavigator->Activate();
     fRootTerminator->Activate();
     fRootWriter->Activate();
@@ -1201,6 +1221,7 @@ void KSRoot::DeactivateComponent()
     fRootSpaceInteraction->Deactivate();
     fRootSpaceNavigator->Deactivate();
     fRootSurfaceInteraction->Deactivate();
+    fRootSurfaceMotion->Deactivate();
     fRootSurfaceNavigator->Deactivate();
     fRootTerminator->Deactivate();
     fRootWriter->Deactivate();

@@ -21,6 +21,7 @@ set( SIMULATION_HEADER_BASENAMES
     KSRootTrajectory.h
     KSRootSpaceInteraction.h
     KSRootSurfaceInteraction.h
+    KSRootSurfaceMotion.h
     KSRootSpaceNavigator.h
     KSRootSurfaceNavigator.h
     KSRootTerminator.h
@@ -57,6 +58,7 @@ set( SIMULATION_SOURCE_BASENAMES
     KSRootTrajectory.cxx
     KSRootSpaceInteraction.cxx
     KSRootSurfaceInteraction.cxx
+    KSRootSurfaceMotion.cxx
     KSRootSpaceNavigator.cxx
     KSRootSurfaceNavigator.cxx
     KSRootTerminator.cxx
@@ -95,6 +97,7 @@ target_link_libraries( KassiopeiaSimulation
     KassiopeiaGenerators
     KassiopeiaTrajectories
     KassiopeiaInteractions
+    KassiopeiaMotions
     KassiopeiaNavigators
     KassiopeiaTerminators
     KassiopeiaWriters

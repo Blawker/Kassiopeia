@@ -115,6 +115,10 @@ KSCOMMANDMEMBERSIMPLEBUILDERHEADER("no default parent for clear_density", "clear
 KSCOMMANDMEMBERSIMPLEBUILDERHEADER("root_surface_interaction", "set_surface_interaction", SetSurfaceInteraction);
 KSCOMMANDMEMBERSIMPLEBUILDERHEADER("root_surface_interaction", "clear_surface_interaction", ClearSurfaceInteraction);
 
+//set/clear surface motion
+KSCOMMANDMEMBERSIMPLEBUILDERHEADER("root_surface_motion", "set_surface_motion", SetSurfaceMotion);
+KSCOMMANDMEMBERSIMPLEBUILDERHEADER("root_surface_motion", "clear_surface_motion", ClearSurfaceMotion);
+
 //add/remove step modifier
 KSCOMMANDMEMBERSIMPLEBUILDERHEADER("root_stepmodifier", "add_modifier", AddStepModifier);
 KSCOMMANDMEMBERSIMPLEBUILDERHEADER("root_stepmodifier", "remove_modifier", RemoveStepModifier);

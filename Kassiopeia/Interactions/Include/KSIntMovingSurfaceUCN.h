@@ -1,3 +1,10 @@
+/*
+ * KSIntMovingSurfaceUCN.h
+ *
+ *  Created on: 24.06.2020
+ *      Author: T. Guilbaud
+ */
+
 #ifndef Kassiopeia_KSIntMovingSurfaceUCN_h_
 #define Kassiopeia_KSIntMovingSurfaceUCN_h_
 
@@ -32,14 +39,24 @@ class KSIntMovingSurfaceUCN : public KSComponentTemplate<KSIntMovingSurfaceUCN, 
   public:
     K_SET_GET(double, Eta);    // eta value (related to reflection probability)
     K_SET_GET(double, Alpha);  // alpha value (probability of spin sign flipping, so 1/2 of spin flip probability)
-    K_SET_GET(double, RealOpticalPotential);
+    K_SET_GET(double, RealOpticalPotential); // Fermi potential
     K_SET_GET(double, CorrelationLength);  // of the roughness
-    K_SET_GET(double, Theta); // Latitude angle in spherical representation (°)
-    K_SET_GET(double, Phi); // Longitude angle in spherical representation (°)
-    K_SET_GET(double, Mass); // Mass of the moving part (kg)
-    K_SET_GET(std::string, ValueFormula); // Position dependent of time (m)
     K_SET_GET(double, ValueMin);
     K_SET_GET(double, ValueMax);
+
+  public:
+    void SetTheta(const double& aTheta);
+    void SetPhi(const double& aPhi);
+    void SetValueFormula(const std::string& aValueFormula);
+
+    const double& GetTheta() const;
+    const double& GetPhi() const;
+    const std::string& GetValueFormula() const;
+    
+  protected:
+    double fTheta; // Latitude angle in spherical representation (°)
+    double fPhi; // Longitude angle in spherical representation (°)
+    std::string fValueFormula; // Position dependent of time (m)
 
   private:
     double fTanThetaIn;

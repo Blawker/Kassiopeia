@@ -1,3 +1,10 @@
+/*
+ * KSIntMovingSurfaceUCNBuilder.cxx
+ *
+ *  Created on: 24.06.2020
+ *      Author: T. Guilbaud
+ */
+
 #include "KSIntMovingSurfaceUCNBuilder.h"
 
 #include "KSRootBuilder.h"
@@ -17,7 +24,6 @@ STATICINT sKSIntMovingSurfaceUCNStructure = KSIntMovingSurfaceUCNBuilder::Attrib
                                       KSIntMovingSurfaceUCNBuilder::Attribute<double>("correlation_length") +
                                       KSIntMovingSurfaceUCNBuilder::Attribute<double>("theta") +
                                       KSIntMovingSurfaceUCNBuilder::Attribute<double>("phi") +
-                                      KSIntMovingSurfaceUCNBuilder::Attribute<double>("mass") +
                                       KSIntMovingSurfaceUCNBuilder::Attribute<string>("value_formula") +
                                       KSIntMovingSurfaceUCNBuilder::Attribute<double>("value_min") +
                                       KSIntMovingSurfaceUCNBuilder::Attribute<double>("value_max");

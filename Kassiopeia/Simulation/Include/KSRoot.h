@@ -15,6 +15,7 @@ class KSRootTrajectory;
 class KSRootSpaceInteraction;
 class KSRootSpaceNavigator;
 class KSRootSurfaceInteraction;
+class KSRootSurfaceMotion;
 class KSRootSurfaceNavigator;
 class KSRootTerminator;
 class KSRootWriter;
@@ -72,6 +73,7 @@ class KSRoot : public KSComponentTemplate<KSRoot>
     KSRootSpaceInteraction* fRootSpaceInteraction;
     KSRootSpaceNavigator* fRootSpaceNavigator;
     KSRootSurfaceInteraction* fRootSurfaceInteraction;
+    KSRootSurfaceMotion* fRootSurfaceMotion;
     KSRootSurfaceNavigator* fRootSurfaceNavigator;
     KSRootTerminator* fRootTerminator;
     KSRootWriter* fRootWriter;

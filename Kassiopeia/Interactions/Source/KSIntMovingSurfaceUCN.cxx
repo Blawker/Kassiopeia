@@ -1,3 +1,10 @@
+/*
+ * KSIntMovingSurfaceUCN.cxx
+ *
+ *  Created on: 24.06.2020
+ *      Author: T. Guilbaud
+ */
+
 #include "KSIntMovingSurfaceUCN.h"
 
 #include "KRandom.h"
@@ -14,12 +21,11 @@ KSIntMovingSurfaceUCN::KSIntMovingSurfaceUCN() :
     fAlpha(0.),
     fRealOpticalPotential(0.),
     fCorrelationLength(0.),
-    fTheta(0.),
-    fPhi(0.),
-    fMass(0.),
-    fValueFormula("x"),
     fValueMin(0.),
     fValueMax(0.),
+    fTheta(0.),
+    fPhi(0.),
+    fValueFormula("x"),
     fTanThetaIn(0.),
     fExpThetaCoef(0.),
     fValueFunction(nullptr)
@@ -30,12 +36,11 @@ KSIntMovingSurfaceUCN::KSIntMovingSurfaceUCN(const KSIntMovingSurfaceUCN& aCopy)
     fAlpha(aCopy.fAlpha),
     fRealOpticalPotential(aCopy.fRealOpticalPotential),
     fCorrelationLength(aCopy.fCorrelationLength),
-    fTheta(aCopy.fTheta),
-    fPhi(aCopy.fPhi),
-    fMass(aCopy.fMass),
-    fValueFormula(aCopy.fValueFormula),
     fValueMin(aCopy.fValueMin),
     fValueMax(aCopy.fValueMax),
+    fTheta(aCopy.fTheta),
+    fPhi(aCopy.fPhi),
+    fValueFormula(aCopy.fValueFormula),
     fTanThetaIn(aCopy.fTanThetaIn),
     fExpThetaCoef(aCopy.fExpThetaCoef),
     fValueFunction(nullptr)
@@ -97,24 +102,23 @@ void KSIntMovingSurfaceUCN::ExecuteReflection(const KSParticle& anInitialParticl
 
     // Get the momentum of the particle and the moving surface
     KThreeVector tInitialMomentum = anInitialParticle.GetMomentum();
-
-    // Set the direction of the moving part
-    double fThetaRad = fTheta * katrin::KConst::Pi()/180;
-    double fPhiRad = fPhi * katrin::KConst::Pi()/180;
-    KThreeVector tMovingMomentum(sin(fThetaRad) * cos(fPhiRad),
-                                 sin(fThetaRad) * sin(fPhiRad),
-                                 cos(fThetaRad) );
-
-    // Set magnitude
-    fValueFunction = new TF1("function", fValueFormula.c_str(), fValueMin, fValueMax);
     double tTimeValue = anInitialParticle.GetTime();
-    double tMovingMomentumMagnitude = anInitialParticle.GetMass() * fValueFunction->Derivative(tTimeValue, 0, 0.001);
-    tMovingMomentum.SetMagnitude(tMovingMomentumMagnitude);
 
-    // Add the MovingMomentum to the initial momentum of the particle
-    tInitialMomentum -= 2*tMovingMomentum;
+    if (fValueMin <= tTimeValue && tTimeValue <= fValueMax) {
+      // Set the direction of the moving part
+      KThreeVector tMovingMomentum(sin(fTheta) * cos(fPhi),
+                                   sin(fTheta) * sin(fPhi),
+                                   cos(fTheta) );
 
-    // Decompose the modified momentum of the particle
+      // Set magnitude
+      double tMovingMomentumMagnitude = anInitialParticle.GetMass() * fValueFunction->Derivative(tTimeValue, 0, 0.001);
+      tMovingMomentum.SetMagnitude(tMovingMomentumMagnitude);
+
+      // Add the MovingMomentum to the initial momentum of the particle
+      tInitialMomentum -= 2*tMovingMomentum;
+    }
+
+    // Decompose the modified momentum
     KThreeVector tInitialNormalMomentum = tInitialMomentum.Dot(tNormal) * tNormal;
     KThreeVector tInitialTangentMomentum = tInitialMomentum - tInitialNormalMomentum;
     KThreeVector tInitialOrthogonalMomentum = tInitialTangentMomentum.Cross(tInitialNormalMomentum.Unit());
@@ -194,6 +198,34 @@ double KSIntMovingSurfaceUCN::ValueFunction(const double& aValue) const
 {
     return fTanThetaIn * exp(-fExpThetaCoef * aValue * aValue) / 2 / sqrt(katrin::KConst::Pi() * fExpThetaCoef) +
            (1 + erf(aValue * sqrt(fExpThetaCoef))) / 2;
+}
+
+void KSIntMovingSurfaceUCN::SetTheta(const double& aTheta) {
+    fTheta = aTheta*katrin::KConst::Pi()/180;
+    return;
+}
+
+void KSIntMovingSurfaceUCN::SetPhi(const double& aPhi) {
+    fPhi = aPhi*katrin::KConst::Pi()/180;
+    return;
+}
+
+void KSIntMovingSurfaceUCN::SetValueFormula(const std::string& aValueFormula) {
+    fValueFormula = aValueFormula;
+    fValueFunction = new TF1("function", fValueFormula.c_str(), 0., 1.);
+    return;
+}
+
+const double& KSIntMovingSurfaceUCN::GetTheta() const {
+    return fTheta;
+}
+
+const double& KSIntMovingSurfaceUCN::GetPhi() const {
+    return fPhi;
+}
+
+const std::string& KSIntMovingSurfaceUCN::GetValueFormula() const {
+    return fValueFormula;
 }
 
 }  // namespace Kassiopeia

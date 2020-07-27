@@ -96,6 +96,14 @@ class KSStep : public KSComponentTemplate<KSStep>
     K_REFS(std::string, SurfaceInteractionName)
     K_REFS(bool, SurfaceInteractionFlag)
 
+    //**************
+    //surface motion
+    //**************
+
+  public:
+    K_REFS(std::string, SurfaceMotionName)
+    K_REFS(bool, SurfaceMotionFlag)
+
     //******************
     //surface navigation
     //******************
