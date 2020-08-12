@@ -71,6 +71,8 @@ void KSMotionSurfaceTranslation::ExecuteMotion(const double aTimeValue)
 
             ++tOriginSurface;
         }
+
+        delete tDisplacementTransformation;
     }
     return;
 }
