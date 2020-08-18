@@ -24,8 +24,8 @@ template<> inline bool KSRootSurfaceMotionBuilder::AddAttribute(KContainer* aCon
         aContainer->CopyTo(fObject, &KNamed::SetName);
         return true;
     }
-    if (aContainer->GetName() == "set_surface_motion") {
-        fObject->SetSurfaceMotion(
+    if (aContainer->GetName() == "add_surface_motion") {
+        fObject->AddSurfaceMotion(
             KToolbox::GetInstance().Get<KSSurfaceMotion>(aContainer->AsReference<std::string>()));
         return true;
     }

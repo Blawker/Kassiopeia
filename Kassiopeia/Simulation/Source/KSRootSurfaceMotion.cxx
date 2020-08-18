@@ -16,13 +16,13 @@ namespace Kassiopeia
 {
 
 KSRootSurfaceMotion::KSRootSurfaceMotion() :
-    fSurfaceMotion(nullptr),
+    //fSurfaceMotion(nullptr),
     fStep(nullptr),
     fParticle(nullptr)
 {}
 KSRootSurfaceMotion::KSRootSurfaceMotion(const KSRootSurfaceMotion& aCopy) :
     KSComponent(),
-    fSurfaceMotion(aCopy.fSurfaceMotion),
+    //fSurfaceMotion(aCopy.fSurfaceMotion),
     fStep(aCopy.fStep),
     fParticle(aCopy.fParticle)
 {}
@@ -34,21 +34,24 @@ KSRootSurfaceMotion::~KSRootSurfaceMotion() {}
 
 void KSRootSurfaceMotion::ExecuteMotion(const double aTimeValue)
 {
-    if (fSurfaceMotion == nullptr) {
+    /*if (fSurfaceMotion == nullptr) {
         movmsg(eError) << "<" << GetName() << "> cannot execute motion with no surface motion set" << eom;
-    }
+    }*/
 
-    try {
-        fSurfaceMotion->ExecuteMotion(aTimeValue);
-    }
-    catch (KSException const& e) {
-        throw KSMotionError().Nest(e)
-            << "Failed to execute surface motion <" << fSurfaceMotion->GetName() << ">.";
+    for (int tIndex = 0; tIndex < fSurfaceMotions.End(); tIndex++) {
+        try {
+            fSurfaceMotions.ElementAt(tIndex)->ExecuteMotion(aTimeValue);
+            //fSurfaceMotion->ExecuteMotion(aTimeValue);
+        }
+        catch (KSException const& e) {
+            throw KSMotionError().Nest(e)
+                << "Failed to execute surface motion <" << fSurfaceMotions.ElementAt(tIndex)->GetName() << ">.";
+        }
     }
     return;
 }
 
-void KSRootSurfaceMotion::SetSurfaceMotion(KSSurfaceMotion* aSurfaceMotion)
+/*void KSRootSurfaceMotion::SetSurfaceMotion(KSSurfaceMotion* aSurfaceMotion)
 {
     if (fSurfaceMotion != nullptr) {
         movmsg(eError) << "<" << GetName() << "> tried to set surface motion <" << aSurfaceMotion->GetName()
@@ -71,6 +74,17 @@ void KSRootSurfaceMotion::ClearSurfaceMotion(KSSurfaceMotion* aSurfaceMotion)
                      << eom);
     fSurfaceMotion = nullptr;
     return;
+}*/
+
+void KSRootSurfaceMotion::AddSurfaceMotion(KSSurfaceMotion* anSurfaceMotion)
+{
+    fSurfaceMotions.AddElement(anSurfaceMotion);
+    return;
+}
+void KSRootSurfaceMotion::RemoveSurfaceMotion(KSSurfaceMotion* anSurfaceMotion)
+{
+    fSurfaceMotions.RemoveElement(anSurfaceMotion);
+    return;
 }
 
 void KSRootSurfaceMotion::SetStep(KSStep* aStep)
@@ -80,11 +94,25 @@ void KSRootSurfaceMotion::SetStep(KSStep* aStep)
     return;
 }
 
+void KSRootSurfaceMotion::PushUpdateComponent()
+{
+    for (int tIndex = 0; tIndex < fSurfaceMotions.End(); tIndex++) {
+        fSurfaceMotions.ElementAt(tIndex)->PushUpdate();
+    }
+}
+
+void KSRootSurfaceMotion::PushDeupdateComponent()
+{
+    for (int tIndex = 0; tIndex < fSurfaceMotions.End(); tIndex++) {
+        fSurfaceMotions.ElementAt(tIndex)->PushDeupdate();
+    }
+}
+
 void KSRootSurfaceMotion::ExecuteMotion()
 {
-    if (fSurfaceMotion == nullptr) {
+    /*if (fSurfaceMotion == nullptr) {
         return;
-    }
+    }*/
 
     const double tTimeValue = fParticle->GetTime();
     ExecuteMotion(tTimeValue);
@@ -93,7 +121,7 @@ void KSRootSurfaceMotion::ExecuteMotion()
 }
 
 STATICINT sKSRootSurfaceMotionDict = KSDictionary<KSRootSurfaceMotion>::AddCommand(
-    &KSRootSurfaceMotion::SetSurfaceMotion, &KSRootSurfaceMotion::ClearSurfaceMotion,
-    "set_surface_motion", "clear_surface_motion");
+    &KSRootSurfaceMotion::AddSurfaceMotion, &KSRootSurfaceMotion::RemoveSurfaceMotion,
+    "add_surface_motion", "remove_surface_motion");
 
 }  // namespace Kassiopeia

@@ -37,11 +37,12 @@ class KSRootSurfaceMotion : public KSComponentTemplate<KSRootSurfaceMotion, KSSu
     //***********
 
   public:
-    void SetSurfaceMotion(KSSurfaceMotion* anMotion);
-    void ClearSurfaceMotion(KSSurfaceMotion* anMotion);
+    void AddSurfaceMotion(KSSurfaceMotion* anMotion);
+    void RemoveSurfaceMotion(KSSurfaceMotion* anMotion);
 
   private:
-    KSSurfaceMotion* fSurfaceMotion;
+    KSList<KSSurfaceMotion> fSurfaceMotions;
+    //KSSurfaceMotion* fSurfaceMotion;
 
     //******
     //action
@@ -51,6 +52,9 @@ class KSRootSurfaceMotion : public KSComponentTemplate<KSRootSurfaceMotion, KSSu
     void SetStep(KSStep* anStep);
 
     void ExecuteMotion();
+
+    void PushUpdateComponent() override;
+    void PushDeupdateComponent() override;
 
   private:
     KSStep* fStep;

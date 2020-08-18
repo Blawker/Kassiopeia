@@ -22,6 +22,6 @@ STATICINT sKSRootSurfaceMotion =
 
 STATICINT sKSRootSurfaceMotionStructure =
     KSRootSurfaceMotionBuilder::Attribute<string>("name") +
-    KSRootSurfaceMotionBuilder::Attribute<string>("set_surface_motion");
+    KSRootSurfaceMotionBuilder::Attribute<string>("add_surface_motion");
 
 }  // namespace katrin

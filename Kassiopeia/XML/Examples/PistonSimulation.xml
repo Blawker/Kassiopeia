@@ -130,10 +130,10 @@ Created on: 24.06.2020
   <!-- Motions -->
     <!-- Equation of motion is a time-dependent position function -->
   <define name="equation_motion" value="0.05*x"/>
-  <define name="time_start_motion" value="0."/> <!-- Time in secondes -->
-  <define name="time_end_motion" value="10."/> <!-- Time in secondes -->
-  <define name="theta_motion" value="90."/>
-  <define name="phi_motion" value="180."/>
+  <define name="time_start_motion" value="0."/> <!-- Time (s) -->
+  <define name="time_end_motion" value="10."/> <!-- Time (s) -->
+  <define name="theta_motion" value="90."/> <!-- Angle (°) -->
+  <define name="phi_motion" value="180."/> <!-- Angle (°) -->
 
   <ksmotion_surface_translation name="motion_surface_translation"
     surfaces="world/piston/moving_mirror/#"
@@ -224,7 +224,8 @@ Created on: 24.06.2020
     <command parent="write_root" field="add_track_output" child="component_track_world"/>
     <command parent="write_root" field="add_step_output" child="component_step_world"/>
 
-    <command parent="root_surface_motion" field="set_surface_motion" child="motion_surface_translation"/>
+    <!-- Motion -->
+    <command parent="root_surface_motion" field="add_surface_motion" child="motion_surface_translation"/>
 
     <!-- Surface reflection of the UCN on fix mirror -->
     <geo_surface name="surface_reflection" surfaces="world/piston/fix_mirror/#">
