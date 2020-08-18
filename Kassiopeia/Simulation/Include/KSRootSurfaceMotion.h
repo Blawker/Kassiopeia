@@ -42,7 +42,6 @@ class KSRootSurfaceMotion : public KSComponentTemplate<KSRootSurfaceMotion, KSSu
 
   private:
     KSList<KSSurfaceMotion> fSurfaceMotions;
-    //KSSurfaceMotion* fSurfaceMotion;
 
     //******
     //action

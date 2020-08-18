@@ -16,13 +16,11 @@ namespace Kassiopeia
 {
 
 KSRootSurfaceMotion::KSRootSurfaceMotion() :
-    //fSurfaceMotion(nullptr),
     fStep(nullptr),
     fParticle(nullptr)
 {}
 KSRootSurfaceMotion::KSRootSurfaceMotion(const KSRootSurfaceMotion& aCopy) :
     KSComponent(),
-    //fSurfaceMotion(aCopy.fSurfaceMotion),
     fStep(aCopy.fStep),
     fParticle(aCopy.fParticle)
 {}
@@ -34,14 +32,9 @@ KSRootSurfaceMotion::~KSRootSurfaceMotion() {}
 
 void KSRootSurfaceMotion::ExecuteMotion(const double aTimeValue)
 {
-    /*if (fSurfaceMotion == nullptr) {
-        movmsg(eError) << "<" << GetName() << "> cannot execute motion with no surface motion set" << eom;
-    }*/
-
     for (int tIndex = 0; tIndex < fSurfaceMotions.End(); tIndex++) {
         try {
             fSurfaceMotions.ElementAt(tIndex)->ExecuteMotion(aTimeValue);
-            //fSurfaceMotion->ExecuteMotion(aTimeValue);
         }
         catch (KSException const& e) {
             throw KSMotionError().Nest(e)
@@ -50,31 +43,6 @@ void KSRootSurfaceMotion::ExecuteMotion(const double aTimeValue)
     }
     return;
 }
-
-/*void KSRootSurfaceMotion::SetSurfaceMotion(KSSurfaceMotion* aSurfaceMotion)
-{
-    if (fSurfaceMotion != nullptr) {
-        movmsg(eError) << "<" << GetName() << "> tried to set surface motion <" << aSurfaceMotion->GetName()
-                       << "> with surface motion <" << fSurfaceMotion->GetName() << "> already set" << eom;
-        return;
-    }
-    movmsg_debug("<" << GetName() << "> setting surface motion <" << aSurfaceMotion->GetName() << ">" << eom);
-    fSurfaceMotion = aSurfaceMotion;
-    return;
-}
-void KSRootSurfaceMotion::ClearSurfaceMotion(KSSurfaceMotion* aSurfaceMotion)
-{
-    if (fSurfaceMotion != aSurfaceMotion) {
-        movmsg(eError) << "<" << GetName() << "> tried to remove surface motion <"
-                       << aSurfaceMotion->GetName() << "> with surface motion <"
-                       << fSurfaceMotion->GetName() << "> already set" << eom;
-        return;
-    }
-    movmsg_debug("<" << GetName() << "> clearing surface motion <" << aSurfaceMotion->GetName() << ">"
-                     << eom);
-    fSurfaceMotion = nullptr;
-    return;
-}*/
 
 void KSRootSurfaceMotion::AddSurfaceMotion(KSSurfaceMotion* anSurfaceMotion)
 {
@@ -110,10 +78,6 @@ void KSRootSurfaceMotion::PushDeupdateComponent()
 
 void KSRootSurfaceMotion::ExecuteMotion()
 {
-    /*if (fSurfaceMotion == nullptr) {
-        return;
-    }*/
-
     const double tTimeValue = fParticle->GetTime();
     ExecuteMotion(tTimeValue);
 
